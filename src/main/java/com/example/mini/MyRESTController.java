@@ -28,10 +28,18 @@ public class MyRESTController {
     @RequestMapping("/api/create")
     
     public String create(Employee e) {
-    	System.out.println(e.getName());
+    	
     		
     		repository.save(e);
-    		return e.getAge();
+    		return " ";
+	}
+
+	@RequestMapping("/api/employee/{id}")
+    public String update(Employee e) {
+    	
+    		// e.setId(id);
+    		repository.save(e);
+    		return " ";
     }
 
 
