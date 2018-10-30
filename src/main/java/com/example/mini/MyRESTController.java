@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 
 public class MyRESTController {
@@ -19,28 +17,24 @@ public class MyRESTController {
 //  public String hello() {
 //    return "index.html";
 //  }
-    
+
 	@Autowired
 	private EmployeeRepository repository;
-	
-	
-	
-    @RequestMapping("/api/create")
-    
-    public String create(Employee e) {
-    	
-    		
-    		repository.save(e);
-    		return " ";
+
+	@RequestMapping("/api/create")
+
+	public String create(Employee e) {
+
+		repository.save(e);
+		return " ";
 	}
 
 	@RequestMapping("/api/employee/{id}")
-    public String update(Employee e) {
-    	
-    		// e.setId(id);
-    		repository.save(e);
-    		return " ";
-    }
+	public String update(Employee e) {
 
+		// e.setId(id);
+		repository.save(e);
+		return " ";
+	}
 
 }
