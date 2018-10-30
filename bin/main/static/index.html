@@ -20,14 +20,8 @@
   <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-
-=======
->>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
->>>>>>> 156c45a9683ab9d5169d7ab7b3f76fdc8ddefa53
+  <script src="https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js" crossorigin="anonymous"></script> 
 
 
   <script type="text/babel">
@@ -37,12 +31,6 @@ class Create extends React.Component {
 
 constructor(props) {
         super(props);
-<<<<<<< HEAD
-        
-        // this.create = this.create.bind(this);
-        this.name = this.name.bind(this);
-=======
-<<<<<<< HEAD
         this.state={
           temp:{
             name:'',
@@ -54,21 +42,12 @@ constructor(props) {
         this.handleEvent = this.handleEvent.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.fetchdata1 = this.fetchdata1.bind(this);
-=======
-        
-        // this.create = this.create.bind(this);
-        this.name = this.name.bind(this);
->>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
->>>>>>> 156c45a9683ab9d5169d7ab7b3f76fdc8ddefa53
         }
 
 //    create() {
 //    return {employees: []};
 //  }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
  handleEvent(key) {
  
 
@@ -151,23 +130,6 @@ constructor(props) {
     <input type="text" value={this.state.temp.years}  name ="years" onChange={this.handleEvent('years')}/>
     <button  type="submit">Submit</button>
     </form>
-=======
->>>>>>> 156c45a9683ab9d5169d7ab7b3f76fdc8ddefa53
- name(event) {
-  var self = this;
-  self.setState({name: event.target.value});
- }
-
-  render() {
-    return ( <div>
-    <input type="text" value="name" onClick={this.name} />
-    <input type="text" value="age" />
-    <input type="text" value="Years" />
-    <button >Submit</button>
-<<<<<<< HEAD
-=======
->>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
->>>>>>> 156c45a9683ab9d5169d7ab7b3f76fdc8ddefa53
     </div> );
   }
 };
@@ -212,13 +174,7 @@ class App extends React.Component {
         super(props);
         this.state={
           employees : []
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
           
-=======
->>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
->>>>>>> 156c45a9683ab9d5169d7ab7b3f76fdc8ddefa53
         }
         
         this.loadEmployeesFromServer = this.loadEmployeesFromServer.bind(this);
@@ -240,33 +196,15 @@ class App extends React.Component {
   //    return {employees: []};
   //  }
 
-<<<<<<< HEAD
-  //  componentDidMount() {
-  //    this.loadEmployeesFromServer();
-  //  }
-=======
-<<<<<<< HEAD
    componentDidMount() {
      this.loadEmployeesFromServer();
    }
-=======
-  //  componentDidMount() {
-  //    this.loadEmployeesFromServer();
-  //  }
->>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
->>>>>>> 156c45a9683ab9d5169d7ab7b3f76fdc8ddefa53
  
  render() {
   
    
   var self = this;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
  
-=======
->>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
->>>>>>> 156c45a9683ab9d5169d7ab7b3f76fdc8ddefa53
    $.ajax({
      url: "http://localhost:8080/api/employees"
    }).then(function (data) {
