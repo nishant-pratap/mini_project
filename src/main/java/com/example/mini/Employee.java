@@ -5,54 +5,54 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-
 @Entity
 public class Employee {
- 
-    @Id 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String name;
-    private int age;
-    private int years;
-    
-    public long getid() {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	private String name;
+	private String age;
+	private String years;
+	public Employee() {
+		System.out.println("jjj");
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setid(long id) {
+	public void setId(long id) {
 		this.id = id;
-    }
-    public String getname() {
+	}
+
+	public String getName() {
 		return name;
 	}
 
-	public void setname(String id) {
+	public void setName(String name) {
 		this.name = name;
-    }
-    
-    public Integer getage() {
+	}
+
+	public String getAge() {
 		return age;
 	}
 
-	public void setage(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
-    public Integer getyears() {
+	public String getYears() {
 		return years;
 	}
 
-	public void setyear(Integer years) {
+	public void setYears(String years) {
 		this.years = years;
 	}
 
-    private Employee() {}
- 
-    public Employee(String name, int age, int years) {
-        this.name = name;
-        this.age = age;
-        this.years = years;
-    }
+	public Employee(String name, String age, String years) {
+		this.name = name;
+		this.age = age;
+		this.years = years;
+	}
 }
