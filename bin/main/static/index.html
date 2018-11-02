@@ -20,8 +20,11 @@
   <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<<<<<<< HEAD
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 
+=======
+>>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
 
 
   <script type="text/babel">
@@ -31,6 +34,7 @@ class Create extends React.Component {
 
 constructor(props) {
         super(props);
+<<<<<<< HEAD
         this.state={
           temp:{
             name:'',
@@ -42,12 +46,18 @@ constructor(props) {
         this.handleEvent = this.handleEvent.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.fetchdata1 = this.fetchdata1.bind(this);
+=======
+        
+        // this.create = this.create.bind(this);
+        this.name = this.name.bind(this);
+>>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
         }
 
 //    create() {
 //    return {employees: []};
 //  }
 
+<<<<<<< HEAD
  handleEvent(key) {
  
 
@@ -130,6 +140,19 @@ constructor(props) {
     <input type="text" value={this.state.temp.years}  name ="years" onChange={this.handleEvent('years')}/>
     <button  type="submit">Submit</button>
     </form>
+=======
+ name(event) {
+  var self = this;
+  self.setState({name: event.target.value});
+ }
+
+  render() {
+    return ( <div>
+    <input type="text" value="name" onClick={this.name} />
+    <input type="text" value="age" />
+    <input type="text" value="Years" />
+    <button >Submit</button>
+>>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
     </div> );
   }
 };
@@ -174,7 +197,10 @@ class App extends React.Component {
         super(props);
         this.state={
           employees : []
+<<<<<<< HEAD
           
+=======
+>>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
         }
         
         this.loadEmployeesFromServer = this.loadEmployeesFromServer.bind(this);
@@ -196,15 +222,24 @@ class App extends React.Component {
   //    return {employees: []};
   //  }
 
+<<<<<<< HEAD
    componentDidMount() {
      this.loadEmployeesFromServer();
    }
+=======
+  //  componentDidMount() {
+  //    this.loadEmployeesFromServer();
+  //  }
+>>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
  
  render() {
   
    
   var self = this;
+<<<<<<< HEAD
  
+=======
+>>>>>>> 418fa2c381ea580a9440cd83702bca7774444bba
    $.ajax({
      url: "http://localhost:8080/api/employees"
    }).then(function (data) {
