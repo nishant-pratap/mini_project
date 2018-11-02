@@ -20,6 +20,8 @@
   <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
 
 
   <script type="text/babel">
@@ -29,26 +31,105 @@ class Create extends React.Component {
 
 constructor(props) {
         super(props);
-        
+        this.state={
+          temp:{
+            name:'',
+            age:'',
+            years:''
+          }
+        }
         // this.create = this.create.bind(this);
-        this.name = this.name.bind(this);
+        this.handleEvent = this.handleEvent.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.fetchdata1 = this.fetchdata1.bind(this);
         }
 
 //    create() {
 //    return {employees: []};
 //  }
 
- name(event) {
-  var self = this;
-  self.setState({name: event.target.value});
+ handleEvent(key) {
+ 
+
+   return (event) => {
+          var temp = Object.assign({}, this.state.temp);
+          temp[key] = event.target.value;
+          this.setState({temp: temp});
+        }
+  // return (event) => {
+  // self.setState({name: event.target.value});
+  // }
  }
+ handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    
+    fetch('http://localhost:8080/api/create', {
+      method: 'POST',
+      body: data,
+    });
+  }
+
+//  fetchdata1() {
+//     var self = this;
+//     $.ajax({
+//         type: 'PUT',
+//       url: "http://localhost:8080/create",
+      
+//       success: function(result) {
+//         self.setState({});
+//       },
+      
+    
+//     });
+//   }
+
+
+// onCreate(temp) {
+
+// }
+
+
+
+
+//  fetchdata1(){this.fetchdata("PUT",this.state.temp)}
+
+// fetchdata(method,parameter){
+
+// var that=this;
+
+// // parameter.id="kjhgkjfdhkj";
+
+// console.log(parameter);
+
+// axios.put('http://localhost:8080/create',{params:parameter})
+
+// .then(function (response) {
+
+// console.log(response);
+
+// return response;
+
+// })
+
+// .catch(function (error) {
+
+// console.log(error);
+
+// return error;
+
+// });
+
+// }
 
   render() {
     return ( <div>
-    <input type="text" value="name" onClick={this.name} />
-    <input type="text" value="age" />
-    <input type="text" value="Years" />
-    <button >Submit</button>
+    <form onSubmit={this.handleSubmit} method="POST">
+    <input type="text" value={this.state.temp.name} name ="name" onChange={this.handleEvent('name')} />
+    <input type="text" value={this.state.temp.age} name ="age" onChange={this.handleEvent('age')}/>
+    <input type="text" value={this.state.temp.years}  name ="years" onChange={this.handleEvent('years')}/>
+    <button  type="submit">Submit</button>
+    </form>
     </div> );
   }
 };
@@ -93,6 +174,7 @@ class App extends React.Component {
         super(props);
         this.state={
           employees : []
+          
         }
         
         this.loadEmployeesFromServer = this.loadEmployeesFromServer.bind(this);
@@ -114,14 +196,15 @@ class App extends React.Component {
   //    return {employees: []};
   //  }
 
-  //  componentDidMount() {
-  //    this.loadEmployeesFromServer();
-  //  }
+   componentDidMount() {
+     this.loadEmployeesFromServer();
+   }
  
  render() {
   
    
   var self = this;
+ 
    $.ajax({
      url: "http://localhost:8080/api/employees"
    }).then(function (data) {
