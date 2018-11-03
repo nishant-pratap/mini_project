@@ -4,6 +4,8 @@
 <head>
   <title>React + Spring</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
 
@@ -21,11 +23,101 @@
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-
-
-
+  <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script type="text/babel">
+
+  const {
+    colors,
+  
+  CssBaseline,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Icon,
+  Button,
+Table,
+TableBody,
+TableCell,
+TableHead,
+TableRow,
+Paper,
+PropTypes,
+createMuiTheme,
+  MuiThemeProvider,
+  Typography,
+  withStyles,
+} = window['material-ui'];
+
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: {
+//       light: colors.purple[300],
+//       main: colors.purple[500],
+//       dark: colors.purple[700],
+//     },
+//     secondary: {
+//       light: colors.green[300],
+//       main: colors.green[500],
+//       dark: colors.green[700],
+//     },
+//   },
+//   typography: {
+//     useNextVariants: true,
+//   },
+// });
+const styles = theme => ({
+  root: {
+   width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
+    
+  },
+  icon: {
+    marginRight: theme.spacing.unit,
+  },
+ table: {
+    minWidth: 700,
+  },
+});
+
+
     var EMPLOYEES = [];
+
+class CreateToggle extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            active: false,
+        };
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.setState({
+            active: !this.state.active
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                
+
+                {this.state.active && <Create />}
+
+                <button type="button" onClick={this.handleClick}>
+                    Toggle
+                </button>
+
+            </div>
+        )
+    }
+}
 
 class Create extends React.Component {
 
@@ -34,8 +126,9 @@ constructor(props) {
         this.state={
           temp:{
             name:'',
-            age:'',
-            years:''
+            quality:'',
+            quantity:'',
+            price:''
           }
         }
         // this.create = this.create.bind(this);
@@ -126,8 +219,9 @@ constructor(props) {
     return ( <div>
     <form onSubmit={this.handleSubmit} method="POST">
     <input type="text" value={this.state.temp.name} name ="name" onChange={this.handleEvent('name')} />
-    <input type="text" value={this.state.temp.age} name ="age" onChange={this.handleEvent('age')}/>
-    <input type="text" value={this.state.temp.years}  name ="years" onChange={this.handleEvent('years')}/>
+    <input type="text" value={this.state.temp.quality} name ="quality" onChange={this.handleEvent('quality')}/>
+    <input type="text" value={this.state.temp.quantity}  name ="quantity" onChange={this.handleEvent('quantity')}/>
+    <input type="text" value={this.state.temp.price}  name ="price" onChange={this.handleEvent('price')}/>
     <button  type="submit">Submit</button>
     </form>
     </div> );
@@ -145,24 +239,27 @@ constructor(props) {
 
 
  render() {
-      
+  const { classes } = this.props;
     var rows = [];
     this.props.employees.forEach(function(employee) {
       rows.push(<Employee employee={employee} />);
     });
     return (
         <div className="container">
-  <table className="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Years</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>{rows}</tbody>
-  </table>
+          <Paper >
+            <Table>
+  
+              <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+              <TableCell>Quality</TableCell>
+                <TableCell>Quantity</TableCell>
+                  <TableCell>Price</TableCell>
+                </TableRow>
+        </TableHead>
+        <TableBody>{rows} </TableBody>
+      </Table>
+    </Paper>
 </div>);
   }
 };
@@ -210,9 +307,10 @@ class App extends React.Component {
    }).then(function (data) {
      self.setState({employees: data._embedded.employees});
    });
+   
    return (
      <div>
-     <Create employees={this.state.employees} />
+     <CreateToggle  />
      <EmployeeTable employees={this.state.employees}/></div> );
       
  }
@@ -252,14 +350,15 @@ class Employee extends React.Component {
   render() {
     if (this.state.display==false) return null;
     else return (
-      <tr>
-        <td>{this.props.employee.name}</td>
-        <td>{this.props.employee.age}</td>
-        <td>{this.props.employee.years}</td>
-        <td>
+      <TableRow>
+        <TableCell>{this.props.employee.name}</TableCell>
+          <TableCell>{this.props.employee.quality}</TableCell>
+            <TableCell>{this.props.employee.quantity}</TableCell>
+              <TableCell>{this.props.employee.price}</TableCell>
+        <TableCell>
           <button className="btn btn-info" onClick={this.handleDelete}>Delete</button>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
     );
   }
 }; 
