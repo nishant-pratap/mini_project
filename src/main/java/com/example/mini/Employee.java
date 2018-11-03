@@ -8,8 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Employee {
 
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
