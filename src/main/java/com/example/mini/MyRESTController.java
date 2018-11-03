@@ -23,21 +23,15 @@ public class MyRESTController {
 	@Autowired
 	private EmployeeRepository repository;
 	
-	
-	
     @RequestMapping("/api/create")
     
     public String create(Employee e) {
-    	
-    		
     		repository.save(e);
     		return " ";
 	}
 
 	@RequestMapping("/api/employee/{id}")
     public String update(Employee e) {
-    	
-    		// e.setId(id);
     		repository.save(e);
     		return " ";
     }
