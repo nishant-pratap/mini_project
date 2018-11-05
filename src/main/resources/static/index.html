@@ -17,7 +17,7 @@
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-  <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@material-ui/core@1.1.0/umd/material-ui.development.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script type="text/babel">
 
@@ -151,12 +151,20 @@ constructor(props) {
  }
  handleSubmit(event) {
     event.preventDefault();
+
+    if(this.state.temp.name && this.state.temp.quality && this.state.temp.quantity && this.state.temp.price){
     const data = new FormData(event.target);
     
     fetch('http://localhost:8080/api/create', {
       method: 'POST',
       body: data,
     });
+
+    alert("Details submitted");
+    }
+    else{
+      alert("All fields are mandatory");
+    }
   }
 
 
