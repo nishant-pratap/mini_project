@@ -85,11 +85,17 @@ class CreateToggle extends React.Component {
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.handlegone = this.handlegone.bind(this);
     }
 
     handleClick() {
         this.setState({
             active: !this.state.active
+        });
+    }
+    handlegone(){
+      this.setState({
+            active: false
         });
     }
 
@@ -99,7 +105,7 @@ class CreateToggle extends React.Component {
               <button  className="btn btn-info" type="button" onClick={this.handleClick}>
                     Create Sales Request
               </button>
-              {this.state.active && <Create />}
+              {this.state.active && <Create tog={this.handlegone} />}
             </div>
         )
     }
@@ -107,15 +113,19 @@ class CreateToggle extends React.Component {
 class Header extends React.Component{
   render(){
     return(
-          <nav className="navbar navbar-default">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <a className="navbar-brand" href="#">
-            Sales company
-          </a>
-        </div>
-      </div>
-    </nav>
+      <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SalesCompany</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
     )
   }
 }
@@ -159,8 +169,9 @@ constructor(props) {
       method: 'POST',
       body: data,
     });
-
+    this.props.tog;
     alert("Details submitted");
+  
     }
     else{
       alert("All fields are mandatory");
@@ -215,9 +226,12 @@ constructor(props) {
     this.props.employees.forEach(function(employee) {
       rows.push(<Employee employee={employee} />);
     });
-    return (
+    if(rows && rows.length > 0){
+    return(
+     
         <div >
           <Paper >
+          <div className="title"><h2> List of Sales Requests</h2></div>
             <Table>
   
               <TableHead>
@@ -232,7 +246,16 @@ constructor(props) {
         <TableBody>{rows} </TableBody>
       </Table>
     </Paper>
-</div>);
+</div>
+);
+      }
+      else{
+        return(
+        <div></div>);
+      }
+     
+       
+      
   }
 };
          
@@ -328,6 +351,8 @@ class Employee extends React.Component {
               <TableCell>{this.props.employee.price}</TableCell>
         <TableCell>
           <button className="btn btn-info btn-danger" onClick={this.handleDelete}>Delete</button>
+          &nbsp;
+          <button className="btn  btn-success" onClick={this.handleDelete}>Update</button>
         </TableCell>
       </TableRow>
     );

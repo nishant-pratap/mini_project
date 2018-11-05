@@ -8,8 +8,20 @@ body{
     background-color:#ececec;
 }
 .MuiTableCell-root-35{
-    font-size:20px !important;
+    font-size:15px !important;
 } 
 .MuiTableCell-root-37{
-    font-size:20px;
+    font-size:15px;
+}
+.MuiPaper-root-1{
+    margin-top:16% !important;
+}
+.title{
+    text-align:center;
+    padding:9px;
+    font-family: serif;
+}
+#root{
+    padding:0px;
+    border-radius: 0px;
 }
