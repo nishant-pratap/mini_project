@@ -169,7 +169,7 @@ constructor(props) {
       method: 'POST',
       body: data,
     });
-    this.props.tog;
+    this.props.tog();
     alert("Details submitted");
   
     }
@@ -235,14 +235,14 @@ constructor(props) {
             <Table>
   
               <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-              <TableCell>Quality</TableCell>
-                <TableCell>Quantity</TableCell>
-                  <TableCell>Price</TableCell>
-                  <TableCell>Options</TableCell>
+                <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Quality</TableCell>
+                    <TableCell>Quantity</TableCell>
+                    <TableCell>Price</TableCell>
+                    <TableCell>Options</TableCell>
                 </TableRow>
-        </TableHead>
+              </TableHead>
         <TableBody>{rows} </TableBody>
       </Table>
     </Paper>
@@ -252,10 +252,7 @@ constructor(props) {
       else{
         return(
         <div></div>);
-      }
-     
-       
-      
+      }   
   }
 };
          
@@ -268,9 +265,7 @@ class App extends React.Component {
           employees : []
           
         }
-        
         this.loadEmployeesFromServer = this.loadEmployeesFromServer.bind(this);
-   
         }
 
 
@@ -283,15 +278,11 @@ class App extends React.Component {
    });
  }
 
-
-
    componentDidMount() {
      this.loadEmployeesFromServer();
    }
  
  render() {
-  
-   
   var self = this;
  
    $.ajax({
@@ -320,13 +311,9 @@ class Employee extends React.Component {
         this.state={
           display: true
         }
-       
         this.handleDelete = this.handleDelete.bind(this);
-    
         }
 
-
- 
   handleDelete() {
     var self = this;
     $.ajax({
@@ -336,8 +323,6 @@ class Employee extends React.Component {
       success: function(result) {
         self.setState({});
       },
-      
-    
     });
   }
 
@@ -346,9 +331,9 @@ class Employee extends React.Component {
     else return (
       <TableRow>
         <TableCell>{this.props.employee.name}</TableCell>
-          <TableCell>{this.props.employee.quality}</TableCell>
-            <TableCell>{this.props.employee.quantity}</TableCell>
-              <TableCell>{this.props.employee.price}</TableCell>
+        <TableCell>{this.props.employee.quality}</TableCell>
+        <TableCell>{this.props.employee.quantity}</TableCell>
+        <TableCell>{this.props.employee.price}</TableCell>
         <TableCell>
           <button className="btn btn-info btn-danger" onClick={this.handleDelete}>Delete</button>
           &nbsp;
@@ -358,10 +343,7 @@ class Employee extends React.Component {
     );
   }
 }; 
-      
-
         ReactDOM.render(<App />, document.getElementById('root'));
         </script>
 </body>
-
 </html>
